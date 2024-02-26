@@ -1,27 +1,32 @@
+import { pipe } from 'rxjs';
 import { Product } from './../interfaces/product';
-import { Injectable, signal } from '@angular/core';
+import { Injectable, OnInit, effect, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private items = signal<Product[]>([]);
+  public items = signal<Product[]>([]);
 
-  constructor() {}
+  // constructor() {
+  //   effect(() => {
+  //     localStorage.setItem('cart', JSON.stringify(this.items()));
+  //   });
+  // }
+  // ngOnInit() {
+  //   const data = localStorage.getItem('cart');
+  //   if (data) {
+  //     this.items.set(JSON.parse(data));
+  //   }
+  // }
 
   addToCart(product: Product) {
     this.items.update((d: any) => [...d, product]);
+    localStorage.setItem('cart', JSON.stringify(this.items()));
   }
 
   getItems() {
     return this.items();
-  }
-
-  total() {
-    if (!this.items()) return;
-    let total = 0;
-    this.items().forEach((a) => (total += a.price));
-    return total;
   }
 
   getTotal() {

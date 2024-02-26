@@ -38,4 +38,7 @@ export class ProductListComponent {
     if (!product) return;
     return this.addProduct.addToCart(product);
   }
+
+
+  
 }

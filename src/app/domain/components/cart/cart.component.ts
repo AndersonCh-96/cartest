@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { CartService } from '../../../services/cart.service';
 
 @Component({
@@ -16,8 +16,19 @@ export class CartComponent {
     return this.list.deleteItem(id);
   }
 
+  constructor() {
+    effect(() => {
+      localStorage.setItem('cart', JSON.stringify(this.list.items()));
+    });
+  }
+  ngOnInit() {
+    const data = localStorage.getItem('cart');
+    if (data) {
+      this.list.items.set(JSON.parse(data));
+    }
+  }
+
   increment(id: number) {
-  
     this.list.increment(id);
   }
   decrement(id: number) {
