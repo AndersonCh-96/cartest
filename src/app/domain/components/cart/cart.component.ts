@@ -13,7 +13,14 @@ export class CartComponent {
   list = inject(CartService);
 
   deleteItem(id: number) {
-  
     return this.list.deleteItem(id);
+  }
+
+  increment(id: number) {
+  
+    this.list.increment(id);
+  }
+  decrement(id: number) {
+    this.list.decrement(id);
   }
 }

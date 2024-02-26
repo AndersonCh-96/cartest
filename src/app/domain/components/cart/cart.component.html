@@ -8,12 +8,27 @@
       <div class="card-body">
         <h5 class="card-title">{{ item.name }}</h5>
         <p class="card-text">{{ item.price | currency }}</p>
-        <button (click)="deleteItem(id)" class="bg-red-500 rounded-lg text-white p-1">Eliminar</button>
+        <button
+          (click)="deleteItem(id)"
+          class="bg-red-500 rounded-lg text-white p-1"
+        >
+          Eliminar
+        </button>
+      </div>
+      <div>
+        <p class="text-xs font-bold">Cantidad: {{ item.cantidad }}</p>
+      </div>
+      <div class="">
+        <button (click)="increment(id)" class="bg-blue-400 p-1 mx-1 rounded-md">
+          +</button
+        ><button (click)="decrement(id)" class="bg-blue-400 p-1 rounded-md">
+          -
+        </button>
       </div>
     </div>
     }@empty {
     <p>No hay productos agregados al carrito</p>
     }
   </ul>
-  <p>Total: {{ list.total() | currency}}</p>
+  <p>Total: {{ list.getTotal() | currency }}</p>
 </div>

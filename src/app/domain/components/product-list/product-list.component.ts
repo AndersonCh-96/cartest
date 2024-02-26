@@ -17,16 +17,19 @@ export class ProductListComponent {
       id: 1,
       name: 'Computador',
       price: 200,
+      cantidad: 1,
     },
     {
       id: 2,
       name: 'Lavadora',
       price: 400,
+      cantidad: 1,
     },
     {
       id: 3,
       name: 'Equipo',
       price: 130,
+      cantidad: 1,
     },
   ]);
   addProduct = inject(CartService);
